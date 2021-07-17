@@ -1,6 +1,6 @@
 # Auth-Api
 
-[Pull Request](https://github.com/En-ZUH/auth-api/pulls)
+[Pull Request](https://github.com/En-ZUH/auth-api/pull/2)
 
 
 [Action](https://github.com/En-ZUH/auth-api/actions)
