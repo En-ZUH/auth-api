@@ -4,8 +4,9 @@ const fs = require('fs');
 const express = require('express');
 const Collection = require('../models/data-collection.js');
 
-const bearerAuth = require('../../../auth-server/src/auth/middleware/bearer');
-const permissions = require('../../../auth-server/src/auth/middleware/acl');
+const bearerAuth = require('../middleware/bearer');
+const isAbleTo = require('../middleware/acl');
+const basicAuth = require('../middleware/basic');
 
 const router = express.Router();
 
@@ -29,15 +30,19 @@ router.param('model', (req, res, next) => {
         }
     }
 });
+//read
+router.get('/:model', bearerAuth, isAbleTo('read'), handleGetAll);
+router.get('/:model/:id', bearerAuth, isAbleTo('read'), handleGetOne);
 
-router.get('/:model', bearerAuth, permissions('read'), handleGetAll);
-router.get('/:model/:id', bearerAuth, permissions('read'), handleGetOne);
+//create
+router.post('/:model', bearerAuth, isAbleTo('creat'), handleCreate);
 
-router.post('/:model', bearerAuth, permissions('creat'), handleCreate);
-router.put('/:model/:id', bearerAuth, permissions('update'), handleUpdate);
+//update
+router.put('/:model/:id', bearerAuth, isAbleTo('update'), handleUpdate);
+router.patch('/:model/:id', bearerAuth, isAbleTo('update'), handleUpdate);
 
-router.patch('/:model/:id', bearerAuth, permissions('update'), handleUpdate);
-router.delete('/:model/:id', bearerAuth, permissions('delete'), handleUpdate);
+//delete 
+router.delete('/:model/:id', bearerAuth, isAbleTo('delete'), handleDelete);
 
 
 

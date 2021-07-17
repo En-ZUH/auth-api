@@ -18,3 +18,5 @@ function handle404(req, res, next) {
 }
 
 module.exports = handle404;
+
+'use strict';
