@@ -59,7 +59,7 @@
       * ✓ can signin with basic 
       * ✓ can signin with bearer 
  
-## Testing: npm test
+## Testing: 
 ![img](assets/test.PNG)
 ***
 ##  UML Diagram 
